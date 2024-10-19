@@ -1,0 +1,23 @@
+[
+    {
+      "id": "p1",
+      "title": "Forest Waterfall",
+      "author": "Lena Foster",
+      "image": {
+        "src": "images/forest-waterfall.jpg",
+        "alt": "A tranquil forest with a cascading waterfall amidst greenery."
+      },
+      "textPath": "public/posts/Forest Waterfall.txt"
+    },
+
+    {
+      "id": "p2",
+      "title": "Sahara Desert Dunes",
+      "author": "Ethan Rivera",
+      "image": {
+        "src": "images/desert-dunes.jpg",
+        "alt": "Golden dunes stretching to the horizon in the Sahara Desert."
+      },
+      "textPath": "public/posts/Sahara Desert Dunes.txt"
+    }
+]
