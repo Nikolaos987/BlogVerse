@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Write, Share, Inspire - Build Your Blogging Haven",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nikolaos987/BlogVerse.git"
+  },
+  "author": "Souloukos Nikolaos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nikolaos987/BlogVerse/issues"
+  },
+  "homepage": "https://github.com/Nikolaos987/BlogVerse#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.1"
+  }
+}
