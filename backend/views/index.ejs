@@ -6,16 +6,19 @@
     <title>Document</title>
 </head>
 <body>
+    <%- include("partials/header.ejs") %>
+
     <h1>Welcome to BlogVerse</h1>
     <ul>
         <% posts.forEach(function(post) { %>
-            <li>
-                <h2><%= post.title %></h2>
-                <p><strong>Author: </strong><%= post.author %></p>
-                <img src="/<%= post.image.src %>" alt="<%= post.image.alt %>" />
-                <p>Published on <%= new Date().getDate() %>/<%= new Date().getMonth() + 1 %>/<%= new Date().getFullYear() %></p>
-                <div><p><%- post.content %></p></div>
-            </li>
+            <a href="/posts/<%=post.id%>">
+                <div>
+                    <h2><%= post.title %></h2>
+                    <p><strong>Author: </strong><%= post.author %></p>
+                    <img style="width: 20%; height: 20%;" src="/<%= post.image.src %>" alt="<%= post.image.alt %>" />
+                    <p>Published on <%= post.datePublished %></p>
+                </div>
+            </a>
             <br>
         <% }); %>
     </ul>

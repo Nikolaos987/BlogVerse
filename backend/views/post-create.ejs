@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("partials/header.ejs") %>
+    <h1>Are you inspired? Start writing!</h1>
+    <form action="/post/create" method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="Forest Waterfall2" required><br>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" value="Nikos" required><br>
+
+        <label for="image">Image (file name):</label>
+        <input type="text" id="image" name="image" placeholder="e.g. forest-waterfall.jpg" value="forest-waterfall2.jpg" required><br>
+
+        <label for="content">Start writing...</label><br>
+        <textarea id="content" name="content" rows="10" required></textarea><br>
+
+        <button type="submit">Create Post</button>
+    </form>
+</body>
+</html>

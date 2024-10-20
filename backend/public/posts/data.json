@@ -1,23 +1,35 @@
 [
-    {
-      "id": "p1",
-      "title": "Forest Waterfall",
-      "author": "Lena Foster",
-      "image": {
-        "src": "images/forest-waterfall.jpg",
-        "alt": "A tranquil forest with a cascading waterfall amidst greenery."
-      },
-      "textPath": "public/posts/Forest Waterfall.txt"
+  {
+    "id": "p1",
+    "title": "Forest Waterfall",
+    "author": "Lena Foster",
+    "image": {
+      "src": "images/forest-waterfall.jpg",
+      "alt": "A tranquil forest with a cascading waterfall amidst greenery."
     },
-
-    {
-      "id": "p2",
-      "title": "Sahara Desert Dunes",
-      "author": "Ethan Rivera",
-      "image": {
-        "src": "images/desert-dunes.jpg",
-        "alt": "Golden dunes stretching to the horizon in the Sahara Desert."
-      },
-      "textPath": "public/posts/Sahara Desert Dunes.txt"
-    }
+    "textPath": "public/posts/Forest Waterfall.txt",
+    "datePublished": "19/10/2024"
+  },
+  {
+    "id": "p2",
+    "title": "Sahara Desert Dunes",
+    "author": "Ethan Rivera",
+    "image": {
+      "src": "images/desert-dunes.jpg",
+      "alt": "Golden dunes stretching to the horizon in the Sahara Desert."
+    },
+    "textPath": "public/posts/Sahara Desert Dunes.txt",
+    "datePublished": "19/10/2024"
+  },
+  {
+    "id": "deae45d1-78bb-49b5-9b1a-2de788fbf917",
+    "title": "Forest Waterfall2",
+    "author": "Nikos",
+    "image": {
+      "src": "images/forest-waterfall2.jpg",
+      "alt": "forest-waterfall2.jpg"
+    },
+    "textPath": "public/posts/forest-waterfall2.txt",
+    "datePublished": "21/10/2024"
+  }
 ]
