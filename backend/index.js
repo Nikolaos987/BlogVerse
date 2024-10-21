@@ -3,9 +3,33 @@ import bodyParser from "body-parser";
 import path from "path";
 import fs from "fs";
 import { v4 as uuidv4 } from 'uuid';
+import multer from "multer";
 
 const app = express();
 const port = 3000;
+// const upload = multer(
+//     { 
+//         dest: 'public/uploads/',
+//         filename: function (req, file, cb) {
+//             // Sanitize the original filename by replacing spaces and non-alphanumeric characters with dashes
+//             const originalName = file.originalname.replace(/[^a-zA-Z0-9.]/g, '-');
+//             cb(null, originalName);
+//         }
+//     }
+// );
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/images/'); // Directory where files will be saved
+    },
+    filename: function (req, file, cb) {
+        // Sanitize the original filename by replacing spaces and non-alphanumeric characters with dashes
+        const originalName = file.originalname.replace(/[^a-zA-Z0-9.]/g, '-');
+        cb(null, originalName);
+    }
+});
+const upload = multer({ storage: storage });
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -71,12 +95,9 @@ app.get("/post/create", (req, res) => {
     res.render("post-create.ejs");
 });
 
-app.post("/post/create", (req, res) => {
-    console.log(req.body); // Check what data is being received
-
-    if (!req.body.author) {
-        return res.status(400).send("Title is missing");
-    }
+app.post("/post/create", upload.single('image'), (req, res) => {
+    console.log("body: ",req.body); // Check what data is being received
+    console.log("file: ",req.file);
 
     fs.readFile("public/posts/data.json", 'utf-8', (err, data) => {
         if (err) {
@@ -92,12 +113,13 @@ app.post("/post/create", (req, res) => {
             title: req.body.title,
             author: req.body.author,
             image: {
-                src: `images/${req.body.image}`, // `{}.jpg`
-                alt: req.body.image,
+                src: req.file ? `images/${req.file.originalname}` : '', // `{}.jpg`
+                alt: req.body.title,
             },
-            textPath: `public/posts/${req.body.title.replace(/\s+/g, '-').toLowerCase()}.txt`,
+            textPath: `public/posts/${req.body.title.replace(/[^a-zA-Z]+/g, '-').toLowerCase()}.txt`,
             datePublished: date
         };
+
         console.log("created new post");
         console.log(newPost);
         fs.writeFile(newPost.textPath, req.body["content"], (err) => {

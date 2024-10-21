@@ -31,5 +31,16 @@
     },
     "textPath": "public/posts/forest-waterfall2.txt",
     "datePublished": "21/10/2024"
+  },
+  {
+    "id": "3cf0db51-d7f6-4c1f-83cc-2483e4ea6529",
+    "title": "Aurora Borealis: The Northern Lights",
+    "author": "Elena Papadopoulou",
+    "image": {
+      "src": "images/aurora-borealis.jpg",
+      "alt": "Aurora Borealis: The Northern Lights"
+    },
+    "textPath": "public/posts/aurora-borealis-the-northern-lights.txt",
+    "datePublished": "21/10/2024"
   }
 ]
