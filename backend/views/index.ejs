@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="/js/deletePost.js" defer></script>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <%- include("partials/header.ejs") %>
@@ -11,15 +13,21 @@
     <h1>Welcome to BlogVerse</h1>
     <ul>
         <% posts.forEach(function(post) { %>
-            <a href="/posts/<%=post.id%>">
-                <div>
-                    <h2><%= post.title %></h2>
-                    <p><strong>Author: </strong><%= post.author %></p>
-                    <img style="width: 20%; height: 20%;" src="/<%= post.image.src %>" alt="<%= post.image.alt %>" />
-                    <p>Published on <%= post.datePublished %></p>
-                </div>
-            </a>
-            <br>
+            <div id=<%=post.id%> class="post">
+                <a href="/posts/<%=post.id%>">
+                    <div>
+                        <h2><%= post.title %></h2>
+                        <p><strong>Author: </strong><%= post.author %></p>
+                        <img style="width: 20%; height: 20%;" src="/<%= post.image.src %>" alt="<%= post.image.alt %>" />
+                        <p>Published on <%= post.datePublished %></p>
+                    </div>
+                </a>
+                <br>
+                <button onclick="deletePost('<%=post.id%>')">DELETE POST</button>
+                <form action="/posts/update/<%=post.id%>" method="UPDATE">
+                    <button type="submit">MODIFY POST</button>
+                </form>
+            </div>
         <% }); %>
     </ul>
 </body>

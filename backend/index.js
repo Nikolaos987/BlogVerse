@@ -140,6 +140,43 @@ app.post("/post/create", upload.single('image'), (req, res) => {
     });
 });
 
+app.delete("/posts/delete/:id", (req, res) => {
+    const postId = req.params.id;
+    fs.readFile("public/posts/data.json", 'utf-8', (err, data) => {
+        if (err) {
+            return res.status(500).send("Error reading data from JSON file");
+        }
+        
+        const posts = JSON.parse(data);
+        const postToDelete = posts.find(post => post.id === postId);
+        const textFilePath = postToDelete.textPath;
+        console.log("path to delete: ", textFilePath);
+        const imageFilePath = postToDelete.image.src;
+        console.log("image to delete: ", imageFilePath);
+
+        fs.unlink(textFilePath, (err) => {
+            if (err) {
+                return res.status(500).send("Error deleting the content file");
+            }
+        });
+
+        fs.unlink(`public/${imageFilePath}`, (err) => {
+            if (err) {
+                return res.status(500).send("Error deleting the image file");
+            }
+        });
+
+        const updatedPosts = posts.filter(post => post.id !== postId);
+
+        fs.writeFile("public/posts/data.json", JSON.stringify(updatedPosts, null, 2), (err) => {
+            if (err) {
+                return res.status(500).send("Error deleting post from JSON file.");
+            }
+        });
+        return res.status(200).send("Post deleted successfully!");
+    });
+});
+
 
 app.listen(port , () => {
     console.log(`Listening on port ${port}`);
