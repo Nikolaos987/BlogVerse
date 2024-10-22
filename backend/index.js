@@ -69,7 +69,6 @@ app.get("/", (req, res) => {
 
 app.get("/posts/:id", (req, res) => {
     const postId = req.params.id
-    console.log(postId);
     fs.readFile("public/posts/data.json", (err, data) => {
         if (err) {
             return res.status(500).send("Error reading data from JSON file");
@@ -78,7 +77,6 @@ app.get("/posts/:id", (req, res) => {
         const posts = JSON.parse(data);
         const post = posts.find(post => post.id === postId);
 
-        // for each post read the txt file that contains the blog text from the textPath property
         if (post) {
             try {
                 const content = fs.readFileSync(post.textPath, 'utf8');
@@ -87,7 +85,92 @@ app.get("/posts/:id", (req, res) => {
                 post.content = "Error loading content.";
             }
         }
+        // console.log(post);
         res.render("post.ejs", { post })
+    });
+});
+
+app.get("/posts/update/:id", (req, res) => {
+    const postToUpdateId = req.params.id;
+    fs.readFile("public/posts/data.json", 'utf-8', (err, data) => {
+        if (err) {
+            return res.status(500).send("Error reading data from JSON file");
+        }
+        const posts = JSON.parse(data);
+        const postToUpdate = posts.find(post => post.id === postToUpdateId);
+        if (postToUpdate) {
+            try {
+                const content = fs.readFileSync(postToUpdate.textPath, 'utf8');
+                postToUpdate.content = content;
+            } catch (error) {
+                postToUpdate.content = "Error loading content.";
+            }
+        }
+        // console.log(postToUpdate);
+        res.render("post-update.ejs", {post: postToUpdate});
+    });
+});
+
+app.put("/post/update/:id", upload.single('image'), (req, res) => {
+    const updatedPostId = req.params.id;
+    const date = getCurrentDay();
+    // const updatedPost = {
+    //     id: updatedPostId,
+    //     title: req.body.titleToUpdate,
+    //     author: req.body.authorToUpdate,
+    //     image: {
+    //         src: req.file ? `images/${req.file.originalname}` : '',
+    //         alt: req.body.titleToUpdate,
+    //     },
+    //     textPath: `public/posts/${req.body.titleToUpdate.replace(/[^a-zA-Z]+/g, '-').toLowerCase()}.txt`,
+    //     datePublished: date,
+    //     content: req.body.contentToUpdate
+    // }
+    fs.readFile("public/posts/data.json", 'utf-8', (err, data) => {
+        if (err) {
+            return res.status(500).send("Error reading data from JSON file");
+        }
+        const posts = JSON.parse(data);
+        // const newPosts = posts.filter(post => post.id !== updatedPostId);
+        // const updatedPosts = [...posts, updatedPost];
+        const postIndex = posts.findIndex(post => post.id === updatedPostId);
+        if (postIndex === -1) {
+            return res.status(404).json({ success: false, message: 'Post not found' });
+        }
+
+        try {
+            const content = fs.readFileSync(posts[postIndex].textPath, 'utf8');
+            posts[postIndex].content = content;
+        } catch (error) {
+            posts[postIndex].content = "Error loading content.";
+        }
+        console.log(posts[postIndex].content);
+
+        if (req.body.title && req.body.title !== posts[postIndex].title) {
+            posts[postIndex].title = req.body.title;
+        }
+        if (req.body.author && req.body.author !== posts[postIndex].author) {
+            posts[postIndex].author = req.body.author;
+        }
+        if (req.body.content && req.body.content !== posts[postIndex].content) {
+            posts[postIndex].content = req.body.content;
+        }
+        if (req.file) {
+            posts[postIndex].image.src = `images/${req.file.originalname}`;
+        }
+
+        fs.writeFile(posts[postIndex].textPath, req.body.content, (err) => {
+            if (err) {
+                return res.status(500).send("Error uploading the post content");
+            }
+        });
+
+        fs.writeFile("public/posts/data.json", JSON.stringify(posts, null, 2), (err) => {
+            if (err) {
+                return res.status(500).json({ success: false, message: 'Error writing data to database' });
+            }
+            return res.status(200).json({ success: true });
+        });
     });
 });
 
@@ -96,8 +179,8 @@ app.get("/post/create", (req, res) => {
 });
 
 app.post("/post/create", upload.single('image'), (req, res) => {
-    console.log("body: ",req.body); // Check what data is being received
-    console.log("file: ",req.file);
+    // console.log("body: ",req.body); // Check what data is being received
+    // console.log("file: ",req.file);
 
     fs.readFile("public/posts/data.json", 'utf-8', (err, data) => {
         if (err) {
@@ -120,8 +203,8 @@ app.post("/post/create", upload.single('image'), (req, res) => {
             datePublished: date
         };
 
-        console.log("created new post");
-        console.log(newPost);
+        // console.log("created new post");
+        // console.log(newPost);
         fs.writeFile(newPost.textPath, req.body["content"], (err) => {
             if (err) {
                 return res.status(500).send("Error uploading the post content");
@@ -150,9 +233,9 @@ app.delete("/posts/delete/:id", (req, res) => {
         const posts = JSON.parse(data);
         const postToDelete = posts.find(post => post.id === postId);
         const textFilePath = postToDelete.textPath;
-        console.log("path to delete: ", textFilePath);
+        // console.log("path to delete: ", textFilePath);
         const imageFilePath = postToDelete.image.src;
-        console.log("image to delete: ", imageFilePath);
+        // console.log("image to delete: ", imageFilePath);
 
         fs.unlink(textFilePath, (err) => {
             if (err) {

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/handlePost.js" defer></script>
+    <title>Post Modification</title>
+</head>
+<body>
+    <%- include("partials/header.ejs") %>
+    <br>
+    <form action="/post/update/<%=post.id%>" method="post" enctype="multipart/form-data">
+        <h1>Modify the post</h1>
+        <label for="titleToUpdate"><strong>Title</strong></label>
+        <input type="text" id="titleToUpdate" name="titleToUpdate" value="<%=post.title%>"><br>
+
+        <label for="authorToUpdate"><strong>Author</strong></label>
+        <input type="text" id="authorToUpdate" name="authorToUpdate" value="<%=post.author%>"><br>
+
+        <label for="imageToUpdate"><strong>Image (*jpg file)</strong></label>
+        <img style="width: 20%; height: 20%;" src="/<%=post.image.src%>"><br>
+        <input type="file" id="imageToUpdate" name="imageToUpdate" accept="image/jpg"><br>
+
+        <label for="contentToUpdate"><strong>Content</strong></label><br>
+        <textarea id="contentToUpdate" name="contentToUpdate" rows="20" cols="100"><%=post.content%></textarea><br>
+
+        <button type="button" onclick="modify('<%=post.id%>')">Save</button>
+    </form>
+</body>
+</html>

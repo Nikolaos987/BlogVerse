@@ -22,14 +22,15 @@
     "datePublished": "19/10/2024"
   },
   {
-    "id": "3cf0db51-d7f6-4c1f-83cc-2483e4ea6529",
-    "title": "Aurora Borealis: The Northern Lights",
-    "author": "Elena Papadopoulou",
+    "id": "289da82f-1f5b-42ef-aa77-cb6f04c4db0a",
+    "title": "sample title",
+    "author": "sample name",
     "image": {
-      "src": "images/aurora-borealis.jpg",
-      "alt": "Aurora Borealis: The Northern Lights"
+      "src": "images/river.jpg",
+      "alt": "sample title"
     },
-    "textPath": "public/posts/aurora-borealis-the-northern-lights.txt",
-    "datePublished": "21/10/2024"
+    "textPath": "public/posts/sample-title.txt",
+    "datePublished": "22/10/2024",
+    "content": "a"
   }
 ]
