@@ -32,5 +32,27 @@
     "textPath": "public/posts/sample-title.txt",
     "datePublished": "22/10/2024",
     "content": "a"
+  },
+  {
+    "id": "f4b55edf-cfed-490f-9d1e-4df9797cedd2",
+    "title": "sample title",
+    "author": "sample name",
+    "image": {
+      "src": "images/river.jpg",
+      "alt": "sample title"
+    },
+    "textPath": "public/posts/sample-title.txt",
+    "datePublished": "27/10/2024"
+  },
+  {
+    "id": "6b48a623-ceea-4a45-9832-5787d6849e95",
+    "title": "sample title",
+    "author": "sample name",
+    "image": {
+      "src": "images/everest.jpg",
+      "alt": "sample title"
+    },
+    "textPath": "public/posts/sample-title.txt",
+    "datePublished": "27/10/2024"
   }
 ]

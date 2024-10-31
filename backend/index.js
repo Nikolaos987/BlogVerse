@@ -189,6 +189,10 @@ app.post("/post/create", upload.single('image'), (req, res) => {
 
         const posts = JSON.parse(data);
 
+        if (posts.length >= 9) {
+            return res.status(500).send("Total posts can't exceed number 10");
+        }
+
         const date = getCurrentDay();
         // new Date().getDate() %>/<%= new Date().getMonth() + 1 %>/<%= new Date().getFullYear() %>
         const newPost = {

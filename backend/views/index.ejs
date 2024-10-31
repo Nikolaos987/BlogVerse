@@ -5,28 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="/js/handlePost.js" defer></script>
+    <script src="/js/handleScrolling.js" defer></script>
     <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="background-image">
     <%- include("partials/header.ejs") %>
 
-    <h1>Welcome to BlogVerse</h1>
-    <ul>
+    <div class="title-container">
+        <h1>Welcome to BlogVerse</h1>
+        <h2>Write, Share and Inspire...</h2>
+        <div class="button-container">
+            <button class="scroll-button" onclick="scrollToPosts()">Explore the BlogVerse</button>
+            <a href="/post/create" class="create-post-button">Start writing!</a>
+        </div>
+    </div>
+
+    <section id="posts" class="cards content">
         <% posts.forEach(function(post) { %>
-            <div id=<%=post.id%> class="post">
-                <a href="/posts/<%=post.id%>">
-                    <div>
-                        <h2><%= post.title %></h2>
-                        <p><strong>Author: </strong><%= post.author %></p>
-                        <img style="width: 20%; height: 20%;" src="/<%= post.image.src %>" alt="<%= post.image.alt %>" />
-                        <p>Published on <%= post.datePublished %></p>
+            <article id=<%=post.id%> class="card">
+                <a href="/posts/<%=post.id%>" class="card-link">
+                    <div class="post-img">
+                        <img src="/<%= post.image.src %>" alt="<%= post.image.alt %>" />
+                    </div>
+                    <div class="post-content">
+                        <div class="post-title"><h2><%= post.title %></h2></div>
+                        <div class="post-author"><p><strong>Author: </strong><%= post.author %></p></div>
+                        <div class="post-date"><p>Published on <%= post.datePublished %></p></div>
                     </div>
                 </a>
-                <br>
-                <button onclick="remove('<%=post.id%>')">DELETE POST</button>
-                <button onclick="getModify('<%=post.id%>')">MODIFY POST</button>
-            </div>
+                <div class="card-buttons">
+                    <button onclick="remove('<%=post.id%>')">DELETE POST</button>
+                    <button onclick="getModify('<%=post.id%>')">MODIFY POST</button>
+                </div>
+            </article>
         <% }); %>
-    </ul>
+    </section>
+    
 </body>
 </html>
