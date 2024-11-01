@@ -42,6 +42,7 @@ function modify(id) {
             document.getElementById('authorToUpdate').innerText = author;
             document.getElementById('contentToUpdate').innerText = content;
             document.getElementById('imageToUpdate').src = `/images/${imageFile ? imageFile.originalname : ''}` // originalName FIX POST.IMAGE.ID there is no post variable
+            // window.location.href = "http://localhost:3000/";
         } else {
             console.log("Error updating the post");
         }

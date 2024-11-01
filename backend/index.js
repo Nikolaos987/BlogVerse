@@ -169,7 +169,7 @@ app.put("/post/update/:id", upload.single('image'), (req, res) => {
             if (err) {
                 return res.status(500).json({ success: false, message: 'Error writing data to database' });
             }
-            return res.status(200).json({ success: true });
+            // return res.redirect("/");
         });
     });
 });
