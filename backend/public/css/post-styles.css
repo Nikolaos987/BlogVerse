@@ -22,11 +22,11 @@
 }
 
 .post-image img {
-    /* width: 700px;
-    height: auto; */
+    width: 700px;
+    height: auto;
 
     display: block;
-    max-width: 100%;
+    /* max-width: 100%; */
     height: auto;
     margin: 0 auto;
     border-radius: 4px;
@@ -62,7 +62,21 @@
         width: 100%;
     }
     .post-content2 p {
+
         font-size: 1rem;
         line-height: 1.4;
+    }
+    .post-image img {
+        max-width: 100%;
+    }
+    .post-content-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .post-content2 {
+        /* max-width: 100%; */
+        width: 100%;
+        padding: 1.5rem;
     }
 }
