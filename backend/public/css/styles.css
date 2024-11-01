@@ -1,3 +1,10 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+
 .background-color {
     background: linear-gradient(90deg, #b4fff7, #e4e4e4);
 }
@@ -33,6 +40,7 @@
     position: fixed;
     top: 0;
     z-index: 1000;
+    margin: 0;
 }
 .navbar-container {
     display: flex;
