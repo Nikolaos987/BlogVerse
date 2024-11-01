@@ -80,7 +80,8 @@
 }
 
 /* Button styling */
-.create-post button[type="submit"] {
+.create-post button[type="submit"],
+.create-post button[type="button"] {
     padding: 0.8rem;
     font-size: 1rem;
     background-color: #9370DB;
@@ -93,7 +94,8 @@
     width: 100%;
 }
 
-.create-post button[type="submit"]:hover {
+.create-post button[type="submit"]:hover,
+.create-post button[type="button"]:hover {
     background-color: #8052b1;
 }
 
