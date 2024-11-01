@@ -103,6 +103,10 @@
         padding: 1rem;
     }
     .navbar-toggle {
+        background-color: #b0da27; /* Bright color like Tomato red */
+        margin-right: 50px;
+        border: none;
+        padding: 10px;
         display: flex;
     }
     .navbar-links.open {
